@@ -28,7 +28,6 @@ RUN apt-get update && \
         libgconf-2-4 \
         libglib2.0-0 \
         libglib2.0-bin \
-        libgobject-2.0-0 \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install Bun
