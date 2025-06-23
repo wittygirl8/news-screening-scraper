@@ -2,25 +2,43 @@ FROM debian:bullseye-slim
 
 WORKDIR /app
 
-# Install curl, unzip, and CA certs
+# Install system dependencies required by Puppeteer
 RUN apt-get update && \
-    apt-get install -y curl unzip ca-certificates && \
-    update-ca-certificates && \
-    apt-get clean
+    apt-get install -y \
+        curl \
+        unzip \
+        ca-certificates \
+        fonts-liberation \
+        libappindicator3-1 \
+        libasound2 \
+        libatk-bridge2.0-0 \
+        libatk1.0-0 \
+        libcups2 \
+        libdbus-1-3 \
+        libgdk-pixbuf2.0-0 \
+        libnspr4 \
+        libnss3 \
+        libx11-xcb1 \
+        libxcomposite1 \
+        libxdamage1 \
+        libxrandr2 \
+        xdg-utils \
+        libgbm1 \
+        libgtk-3-0 \
+        libxshmfence1 \
+        libgconf-2-4 \
+        libgobject-2.0-0 \
+        libglib2.0-0 \
+    && apt-get clean
 
 # Install Bun
 RUN curl -fsSL https://bun.sh/install | bash
 
-# Add Bun to PATH
 ENV PATH="/root/.bun/bin:${PATH}"
-
-# Optionally disable SSL verification (only if needed)
 ENV NODE_TLS_REJECT_UNAUTHORIZED=0
 
-# Copy app files
 COPY . .
 
-# Install deps
 RUN bun install
 
 EXPOSE 3001
