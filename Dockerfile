@@ -27,7 +27,9 @@ RUN apt-get update && \
         libxshmfence1 \
         libgconf-2-4 \
         libglib2.0-0 \
-    && apt-get clean
+        libglib2.0-bin \
+        libgobject-2.0-0 \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install Bun
 RUN curl -fsSL https://bun.sh/install | bash
