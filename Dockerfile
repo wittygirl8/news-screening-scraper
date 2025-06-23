@@ -2,7 +2,6 @@ FROM debian:bullseye-slim
 
 WORKDIR /app
 
-# Install system dependencies required by Puppeteer
 RUN apt-get update && \
     apt-get install -y \
         curl \
@@ -27,7 +26,6 @@ RUN apt-get update && \
         libgtk-3-0 \
         libxshmfence1 \
         libgconf-2-4 \
-        libgobject-2.0-0 \
         libglib2.0-0 \
     && apt-get clean
 
